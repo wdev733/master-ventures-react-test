@@ -1,0 +1,16 @@
+.categoryRoot {
+  width: 100%;
+}
+
+.categoryTitle {
+  width: 100%;
+  background: var(--color-gray);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+@media (max-width: 600px) {
+  .categoryTitle {
+    font-size: var(--font-size-large);
+  }
+}

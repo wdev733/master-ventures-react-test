@@ -1,9 +1,37 @@
+:root {
+  --font-family: 'Roboto';
+  --font-size-normal: 16px;
+  --font-size-small: 12px;
+  --font-size-large: 20px;
+  --font-size-2x: 24px;
+  --font-size-3x: 32px;
+
+  --default-bg: #0D2436;
+
+  --font-color-default: #FFFFFF;
+  --font-color-hover: #CCCCCC;
+
+  --color-black: #000000;
+  --color-gray: #7d7d7d;
+
+  --color-card-selected: #009B86;
+  --color-card-hover: #009B86;
+
+  --color-submit-normal: #009B86;
+  --color-submit-hover: #34AC9C;
+
+  --font-nominee-hover-color: #009B86;
+  --bg-nomine-hover-color: #34AC9C;
+  --bg-nomine-selected-color: #009B86;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: var(--font-family);
+  background: var(--default-bg);
+  color: var(--font-color-default);
 }
 
 a {

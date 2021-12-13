@@ -1,9 +1,32 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+
+import { useEffect, useState } from 'react'
+
+import SplashLoading from '../components/SplashLoading'
+import Category from '../components/Category'
+import Nominee from '../components/Nominee'
+
+import SuccessModal from '../components/Modal/Success'
+
+import { useFetchBallots } from '../hooks'
+import { ISelected, IAward, INominee } from '../types'
+
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
+  const { loading, data } = useFetchBallots();
+
+  const [selected, setSelected ] = useState<ISelected>({})
+  const [modalOpen, setModalOpen] = useState<boolean>(false)
+
+  const handleSelectNominee = (category: string, categoryText: string, nominee: INominee) => {
+    setSelected({
+      ...selected,
+      [category]: selected[category]?.nominee.id === nominee.id ? null : { category: categoryText, nominee}
+    })
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,12 +36,34 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Good Luck!
-        </h1>
+        {loading ? (
+          <SplashLoading />
+        ) : (
+          <div className={styles.content}>
+            <h1 className={styles.title}>AWARDS 2021</h1>
+            {data.map((item: IAward) => (
+              <Category category={item.title} key={`category-${item.id}`}>
+                <div className={styles.grid}>
+                  {item.items.map((i: INominee) => (
+                    <Nominee
+                      key={`nominee-${i.id}`}
+                      data={i}
+                      selected={selected[item.id]?.nominee.id === i.id}
+                      onSelect={() => handleSelectNominee(item.id, item.title, i)}
+                    />
+                  ))}
+                </div>
+              </Category>
+            ))}
+            <button className={styles.submit} onClick={(e) => { setModalOpen(true) }}>SUBMIT BALLOT</button>
+          </div>
+        )}
       </main>
+      {modalOpen && (
+        <SuccessModal onClose={() => {setModalOpen(false)}} selected={selected}/>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

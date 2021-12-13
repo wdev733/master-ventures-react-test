@@ -1,0 +1,101 @@
+.mask {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  background: var(--color-black);
+  opacity: 0.8;
+  width: 100vw;
+  max-width: 100%;
+  height: 100vh;
+  z-index: 50;
+}
+
+.modalContainer {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  background: transparent;
+  width: 100vw;
+  max-width: 100%;
+  height: 100vh;
+  z-index: 100;
+}
+
+.success {
+  margin: 100px auto;
+  background: white;
+  border-radius: 16px;
+  width: 500px;
+  padding: 16px 20px;
+  min-height: 200px;
+}
+
+.success .header {
+  margin-bottom: 30px;
+}
+
+.success .header .close {
+  text-align: right;
+}
+
+.success .header .close img {
+  width: 20px;
+  cursor: pointer;
+}
+
+.success .header .text {
+  font-size: var(--font-size-2x);
+  color: var(--color-black);
+  text-align: center;
+}
+
+.success .content {
+  color: var(--color-black);
+  padding-bottom: 30px;
+}
+
+.success .content .item {
+  display: flex;
+  margin-top: 20px;
+}
+
+.success .content .item img{
+  height: 70px;
+  min-width: 70px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.success .content .itemDescription {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  justify-content: center;
+}
+
+.success .content .itemDescription span:first-child {
+  font-size: var(--font-size-large);
+}
+
+.success .content .itemDescription span:last-child {
+  font-size: var(--font-size-normal);
+}
+
+@media (max-width: 600px) {
+  .success {
+    width: 80%;
+  }
+
+  .success .content .item img{
+    height: 40px;
+    min-width: 40px;
+  }
+
+  .success .content .itemDescription span:first-child {
+    font-size: var(--font-size-normal);
+  }
+
+  .success .content .itemDescription span:last-child {
+    font-size: var(--font-size-small);
+  }
+}
